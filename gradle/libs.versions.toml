@@ -23,3 +23,4 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 
 # Plugins defined by this project
 shiftrandomusers-android-application = { id = "shiftrandomusers.android.application" }
+shiftrandomusers-android-library = { id = "shiftrandomusers.android.library" }
