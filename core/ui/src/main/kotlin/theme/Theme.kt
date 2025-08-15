@@ -1,4 +1,4 @@
-package com.streafy.shiftrandomusers.ui.theme
+package theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -23,7 +23,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun ShiftrandomusersTheme(
+fun ShiftRandomUsersTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit

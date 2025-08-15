@@ -13,5 +13,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:ui"))
+
     implementation(libs.activity.compose)
 }
