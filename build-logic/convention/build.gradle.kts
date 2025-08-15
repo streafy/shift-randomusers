@@ -20,8 +20,12 @@ gradlePlugin {
             implementationClass = "AndroidApplicationConventionPlugin"
         }
         register("androidLibrary") {
-            id = libs.plugins.shiftrandomusers.android.library.get().pluginId
+            id = libs.plugins.shiftrandomusers.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = libs.plugins.shiftrandomusers.android.library.compose.get().pluginId
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
     }
 }
