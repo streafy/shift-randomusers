@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "com.streafy.shiftrandomusers.core.network"
 }
+
+dependencies {
+    implementation(libs.retrofit)
+}
