@@ -1,4 +1,4 @@
-package theme
+package com.streafy.shiftrandomusers.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
