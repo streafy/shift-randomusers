@@ -29,5 +29,6 @@ dependencyResolutionManagement {
 rootProject.name = "shift-randomusers"
 include(":app")
 include(":core:ui")
+include(":core:network")
 
 include(":feature:user-list")
