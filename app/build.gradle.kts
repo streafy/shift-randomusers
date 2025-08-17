@@ -25,9 +25,12 @@ dependencies {
 
     implementation(project(":core:ui"))
     implementation(project(":core:network"))
+    implementation(project(":core:database"))
 
     implementation(libs.activity.compose)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.room.ktx)
 }
