@@ -23,7 +23,8 @@ fun RandomUserApi(
 }
 
 private fun retrofit(baseUrl: String): Retrofit {
-    val jsonConverterFactory = Json.asConverterFactory("application/json".toMediaType())
+    val json = Json { ignoreUnknownKeys = true }
+    val jsonConverterFactory = json.asConverterFactory("application/json".toMediaType())
 
     return Retrofit.Builder()
         .baseUrl(baseUrl)
