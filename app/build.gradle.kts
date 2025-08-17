@@ -21,6 +21,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature:user-list"))
+
     implementation(project(":core:ui"))
     implementation(project(":core:network"))
 
