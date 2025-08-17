@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.shiftrandomusers.android.library)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -8,4 +9,5 @@ android {
 
 dependencies {
     implementation(libs.retrofit)
+    implementation(libs.kotlinx.serialization.json)
 }
