@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.shiftrandomusers.android.application)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -16,4 +18,7 @@ dependencies {
     implementation(project(":core:ui"))
 
     implementation(libs.activity.compose)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }

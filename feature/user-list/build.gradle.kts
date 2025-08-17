@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.shiftrandomusers.android.library.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -13,4 +15,7 @@ dependencies {
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }
