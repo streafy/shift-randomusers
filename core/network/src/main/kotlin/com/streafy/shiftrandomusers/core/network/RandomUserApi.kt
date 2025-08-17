@@ -18,7 +18,7 @@ interface RandomUserApi {
 
 fun RandomUserApi(
     baseUrl: String
-): Retrofit {
+): RandomUserApi {
     return retrofit(baseUrl).create()
 }
 
