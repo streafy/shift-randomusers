@@ -30,5 +30,6 @@ rootProject.name = "shift-randomusers"
 include(":app")
 include(":core:ui")
 include(":core:network")
+include(":core:database")
 
 include(":feature:user-list")
