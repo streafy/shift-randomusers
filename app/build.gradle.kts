@@ -33,4 +33,7 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     implementation(libs.room.ktx)
+
+    implementation(libs.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
 }
