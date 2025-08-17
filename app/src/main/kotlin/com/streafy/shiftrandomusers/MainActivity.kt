@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.streafy.shiftrandomusers.core.ui.theme.ShiftRandomUsersTheme
-import com.streafy.shiftrandomusers.feature.userlist.ui.UserListScreen
+import com.streafy.shiftrandomusers.navigation.AppNavHost
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShiftRandomUsersTheme {
-                UserListScreen()
+                AppNavHost()
             }
         }
     }

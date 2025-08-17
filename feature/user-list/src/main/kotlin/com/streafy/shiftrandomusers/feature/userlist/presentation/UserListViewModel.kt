@@ -15,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class UserListViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
-    private val updateUsersUseCase: UpdateUsersUseCase
+    private val updateUsersUseCase: UpdateUsersUseCase,
+    private val router: UserListRouter
 ) : ViewModel() {
     private val _state: MutableStateFlow<UserListUiState> =
         MutableStateFlow(UserListUiState.Initial)
@@ -79,6 +80,10 @@ class UserListViewModel @Inject constructor(
         }
 
         _state.value = stateValue.copy(errorMessage = null)
+    }
+
+    fun openDetails(userId: String) {
+        router.openUserDetails(userId)
     }
 }
 

@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.shiftrandomusers.android.application)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -22,6 +23,7 @@ android {
 
 dependencies {
     implementation(project(":feature:user-list"))
+    implementation(project(":feature:user-details"))
 
     implementation(project(":core:ui"))
     implementation(project(":core:network"))
