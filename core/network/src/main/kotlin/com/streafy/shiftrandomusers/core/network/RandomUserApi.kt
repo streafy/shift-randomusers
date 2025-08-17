@@ -10,7 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RandomUserApi {
-    @GET("/")
+    @GET("api")
     suspend fun getUsers(
         @Query("results") results: Int
     ): RemoteResponse
