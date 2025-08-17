@@ -24,6 +24,8 @@ class UserListRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateUsers() {
-        TODO("Not yet implemented")
+        val remoteUsers = api.getUsers(20).results
+        userDao.clearAll()
+        userDao.insertAll(remoteUsers.map { it.toDatabaseEntity() })
     }
 }
