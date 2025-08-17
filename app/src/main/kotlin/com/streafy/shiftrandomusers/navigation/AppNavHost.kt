@@ -1,10 +1,15 @@
 package com.streafy.shiftrandomusers.navigation
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -29,11 +34,50 @@ fun AppNavHost() {
         }
     }
 
-    NavHost(
+    AnimatedNavHost(
         navController = navController,
         startDestination = UserListRoute
     ) {
         composable<UserListRoute> { UserListScreen() }
         composable<UserDetailsRoute> { UserDetailsScreen() }
     }
+}
+
+@Composable
+private fun AnimatedNavHost(
+    navController: NavHostController,
+    startDestination: Route,
+    builder: NavGraphBuilder.() -> Unit
+) {
+    val durationMillis = 500
+
+    NavHost(
+        navController = navController,
+        startDestination = startDestination,
+        enterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(durationMillis)
+            )
+        },
+        exitTransition = {
+            slideOutHorizontally(
+                targetOffsetX = { -it },
+                animationSpec = tween(durationMillis)
+            )
+        },
+        popEnterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { -it },
+                animationSpec = tween(durationMillis)
+            )
+        },
+        popExitTransition = {
+            slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(durationMillis)
+            )
+        },
+        builder = builder
+    )
 }
