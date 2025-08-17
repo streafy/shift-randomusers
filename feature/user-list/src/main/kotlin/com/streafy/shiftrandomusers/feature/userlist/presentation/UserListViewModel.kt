@@ -5,12 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.streafy.shiftrandomusers.feature.userlist.domain.User
 import com.streafy.shiftrandomusers.feature.userlist.domain.usecases.GetUsersUseCase
 import com.streafy.shiftrandomusers.feature.userlist.domain.usecases.UpdateUsersUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserListViewModel(
+@HiltViewModel
+class UserListViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
     private val updateUsersUseCase: UpdateUsersUseCase
 ) : ViewModel() {
