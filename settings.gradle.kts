@@ -33,3 +33,4 @@ include(":core:network")
 include(":core:database")
 
 include(":feature:user-list")
+include(":feature:user-details")
