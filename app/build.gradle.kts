@@ -11,11 +11,18 @@ android {
         applicationId = "com.streafy.shiftrandomusers"
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("String", "RANDOMUSER_API_BASE_URL", "\"https://randomuser.me/\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:network"))
 
     implementation(libs.activity.compose)
 
