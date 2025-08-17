@@ -11,6 +11,7 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:network"))
+    implementation(project(":core:database"))
 
     implementation(libs.lifecycle.viewmodel.compose)
 
