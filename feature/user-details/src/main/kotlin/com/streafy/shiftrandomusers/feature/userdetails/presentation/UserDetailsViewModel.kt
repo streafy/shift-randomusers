@@ -35,7 +35,7 @@ class UserDetailsViewModel @AssistedInject constructor(
         _state.value = UserDetailsUiState.Loading
         viewModelScope.launch(handler) {
             val userDetails = getUserDetailsUseCase(userId)
-            _state.value =  UserDetailsUiState.Content(userDetails)
+            _state.value = UserDetailsUiState.Content(userDetails)
         }
     }
 

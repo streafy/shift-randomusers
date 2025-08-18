@@ -49,7 +49,7 @@ class NavComponentGlobalRouter @Inject constructor() : GlobalRouter {
     @HiltViewModel
     class VM @Inject constructor(
         val globalRouter: NavComponentGlobalRouter
-    ): ViewModel()
+    ) : ViewModel()
 
     companion object {
         @Composable

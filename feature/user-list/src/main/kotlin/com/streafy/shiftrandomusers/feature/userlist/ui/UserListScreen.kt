@@ -97,7 +97,9 @@ private fun UserListContent(
             LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 items(users) { user ->
                     UserCard(
-                        user = user, onClick = { onUserClick(user.id) })
+                        user = user,
+                        onClick = { onUserClick(user.id) }
+                    )
                 }
             }
         }
