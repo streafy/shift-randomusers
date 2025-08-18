@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -98,17 +99,19 @@ private fun Contacts(
     email: String,
     phone: String,
 ) {
+    val context = LocalContext.current
+
     UserDetailsBlock(titleText = "Contacts") {
         UserDetailsItem(
             name = "Email",
             value = email,
             modifier = Modifier.horizontalScroll(rememberScrollState()),
-            onClick = {}
+            onClick = { context.sendEmailTo(email) }
         )
         UserDetailsItem(
             name = "Phone",
             value = phone,
-            onClick = {}
+            onClick = { context.dialPhoneNumber(phone) }
         )
     }
 }
@@ -123,16 +126,18 @@ private fun Address(
     latitude: String,
     longitude: String
 ) {
+    val context = LocalContext.current
+
     UserDetailsBlock(titleText = "Location") {
         UserDetailsItem(
             name = "Address",
             value = "$streetNumber $streetName, $city, $state, $country",
-            onClick = {}
+            onClick = { context.showOnMap(address = "$streetNumber $streetName, $city, $state, $country") }
         )
         UserDetailsItem(
             name = "Coordinates",
             value = "$latitude $longitude",
-            onClick = {}
+            onClick = { context.showOnMap(latitude = latitude, longitude = longitude) }
         )
     }
 }
