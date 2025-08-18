@@ -27,5 +27,9 @@ gradlePlugin {
             id = libs.plugins.shiftrandomusers.android.library.compose.get().pluginId
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
+        register("androidFeature") {
+            id = libs.plugins.shiftrandomusers.android.feature.get().pluginId
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
     }
 }
