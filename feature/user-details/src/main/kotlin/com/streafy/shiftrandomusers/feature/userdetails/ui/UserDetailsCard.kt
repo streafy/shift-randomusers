@@ -21,9 +21,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.streafy.shiftrandomusers.feature.userdetails.R
 import com.streafy.shiftrandomusers.feature.userdetails.domain.UserDetails
 
 @Composable
@@ -88,8 +90,18 @@ private fun Header(
                 .clip(RoundedCornerShape(6.dp))
         )
         Column {
-            Text(text = "$firstName $lastName", style = MaterialTheme.typography.titleLarge)
-            Text("@$username", color = MaterialTheme.colorScheme.outline)
+            Text(
+                text = stringResource(
+                    R.string.user_details_card_name_pattern,
+                    firstName,
+                    lastName
+                ),
+                style = MaterialTheme.typography.titleLarge
+            )
+            Text(
+                text = stringResource(R.string.user_details_card_username_pattern, username),
+                color = MaterialTheme.colorScheme.outline
+            )
         }
     }
 }
@@ -101,15 +113,15 @@ private fun Contacts(
 ) {
     val context = LocalContext.current
 
-    UserDetailsBlock(titleText = "Contacts") {
+    UserDetailsBlock(titleText = stringResource(R.string.user_details_card_contacts_block_title)) {
         UserDetailsItem(
-            name = "Email",
+            name = stringResource(R.string.user_details_card_email),
             value = email,
             modifier = Modifier.horizontalScroll(rememberScrollState()),
             onClick = { context.sendEmailTo(email) }
         )
         UserDetailsItem(
-            name = "Phone",
+            name = stringResource(R.string.user_details_phone),
             value = phone,
             onClick = { context.dialPhoneNumber(phone) }
         )
@@ -127,16 +139,28 @@ private fun Location(
     longitude: String
 ) {
     val context = LocalContext.current
+    val address = stringResource(
+        R.string.user_details_card_address_pattern,
+        streetNumber,
+        streetName,
+        city,
+        state,
+        country
+    )
 
-    UserDetailsBlock(titleText = "Location") {
+    UserDetailsBlock(titleText = stringResource(R.string.user_details_card_location_block_title)) {
         UserDetailsItem(
-            name = "Address",
-            value = "$streetNumber $streetName, $city, $state, $country",
-            onClick = { context.showOnMap(address = "$streetNumber $streetName, $city, $state, $country") }
+            name = stringResource(R.string.user_details_card_address),
+            value = address,
+            onClick = { context.showOnMap(address = address) }
         )
         UserDetailsItem(
-            name = "Coordinates",
-            value = "$latitude $longitude",
+            name = stringResource(R.string.user_details_card_coordinates),
+            value = stringResource(
+                R.string.user_details_card_coordinates_pattern,
+                latitude,
+                longitude
+            ),
             onClick = { context.showOnMap(latitude = latitude, longitude = longitude) }
         )
     }
@@ -150,17 +174,25 @@ private fun UserInfo(
     registeredAge: Int,
     nationality: String
 ) {
-    UserDetailsBlock(titleText = "Info") {
+    UserDetailsBlock(titleText = stringResource(R.string.user_details_card_info_block_title)) {
         UserDetailsItem(
-            name = "Date of Birth",
-            value = "$dateOfBirthDate ($dateOfBirthAge years)"
+            name = stringResource(R.string.user_details_card_date_of_birth),
+            value = stringResource(
+                R.string.user_details_card_date_of_birth_pattern,
+                dateOfBirthDate,
+                dateOfBirthAge
+            )
         )
         UserDetailsItem(
-            name = "Registered",
-            value = "$registeredDate ($registeredAge years ago)"
+            name = stringResource(R.string.user_details_card_registered),
+            value = stringResource(
+                R.string.user_details_card_registered_date_pattern,
+                registeredDate,
+                registeredAge
+            )
         )
         UserDetailsItem(
-            name = "Nationality",
+            name = stringResource(R.string.user_details_card_nationality),
             value = nationality
         )
     }

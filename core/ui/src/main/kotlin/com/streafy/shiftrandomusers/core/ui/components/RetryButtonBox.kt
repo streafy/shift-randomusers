@@ -7,6 +7,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.streafy.shiftrandomusers.core.ui.R
 
 @Composable
 fun RetryButtonBox(onRetry: () -> Unit) {
@@ -15,7 +17,7 @@ fun RetryButtonBox(onRetry: () -> Unit) {
         contentAlignment = Alignment.Center
     ) {
         Button(onClick = onRetry) {
-            Text("Retry")
+            Text(stringResource(R.string.retry_button_box_retry_button_text))
         }
     }
 }

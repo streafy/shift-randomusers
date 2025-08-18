@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.ColorImage
@@ -30,6 +31,7 @@ import coil3.annotation.ExperimentalCoilApi
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
+import com.streafy.shiftrandomusers.feature.userlist.R
 import com.streafy.shiftrandomusers.feature.userlist.domain.User
 
 @Composable
@@ -81,7 +83,7 @@ private fun UserName(
     lastName: String
 ) {
     Text(
-        text = "$firstName $lastName",
+        text = stringResource(R.string.user_card_name_pattern, firstName, lastName),
         style = MaterialTheme.typography.titleLarge
     )
 }

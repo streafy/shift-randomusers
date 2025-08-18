@@ -2,4 +2,5 @@
 <resources>
     <string name="error_dialog_ok">OK</string>
     <string name="error_dialog_title">Error!</string>
+    <string name="retry_button_box_retry_button_text">Retry</string>
 </resources>
