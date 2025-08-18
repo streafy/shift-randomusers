@@ -58,3 +58,4 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 shiftrandomusers-android-application = { id = "shiftrandomusers.android.application" }
 shiftrandomusers-android-library = { id = "shiftrandomusers.android.library" }
 shiftrandomusers-android-library-compose = { id = "shiftrandomusers.android.library.compose" }
+shiftrandomusers-android-feature = { id = "shiftrandomusers.android.feature" }
