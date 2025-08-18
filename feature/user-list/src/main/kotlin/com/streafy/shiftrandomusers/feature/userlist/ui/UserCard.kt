@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.ColorImage
@@ -84,7 +85,9 @@ private fun UserName(
 ) {
     Text(
         text = stringResource(R.string.user_card_name_pattern, firstName, lastName),
-        style = MaterialTheme.typography.titleLarge
+        style = MaterialTheme.typography.titleLarge,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1
     )
 }
 
@@ -98,7 +101,11 @@ private fun UserInfoRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(imageVector = icon, contentDescription = null)
-        Text(text)
+        Text(
+            text = text,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1
+        )
     }
 }
 
