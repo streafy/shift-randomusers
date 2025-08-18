@@ -5,6 +5,7 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
@@ -13,6 +14,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.streafy.shiftrandomusers.feature.userdetails.presentation.UserDetailsViewModel
 import com.streafy.shiftrandomusers.feature.userdetails.ui.UserDetailsScreen
 import com.streafy.shiftrandomusers.feature.userlist.ui.UserListScreen
 import kotlinx.coroutines.awaitCancellation
@@ -39,7 +42,17 @@ fun AppNavHost() {
         startDestination = UserListRoute
     ) {
         composable<UserListRoute> { UserListScreen() }
-        composable<UserDetailsRoute> { UserDetailsScreen() }
+        composable<UserDetailsRoute> { entry ->
+            val id = entry.toRoute<UserDetailsRoute>().userId
+
+            UserDetailsScreen(
+                viewModel = hiltViewModel<UserDetailsViewModel, UserDetailsViewModel.Factory>(
+                    key = id
+                ) { factory ->
+                    factory.create(id)
+                }
+            )
+        }
     }
 }
 
