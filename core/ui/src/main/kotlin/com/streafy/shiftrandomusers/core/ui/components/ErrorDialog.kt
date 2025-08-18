@@ -12,13 +12,24 @@ import com.streafy.shiftrandomusers.core.ui.R
 fun ErrorDialog(
     onDismissRequest: () -> Unit,
     onConfirm: () -> Unit,
-    errorMessage: String
+    errorMessage: String,
+    confirmText: String? = null,
+    dismissText: String? = null
 ) {
     AlertDialog(
         onDismissRequest = onDismissRequest,
         confirmButton = {
             TextButton(onClick = onConfirm) {
-                Text(stringResource(R.string.error_dialog_ok))
+                Text(confirmText ?: stringResource(R.string.error_dialog_ok))
+            }
+        },
+        dismissButton = {
+            if (dismissText != null) {
+                TextButton(onClick = onDismissRequest) {
+                    Text(dismissText)
+                }
+            } else {
+                null
             }
         },
         title = {
