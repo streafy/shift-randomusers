@@ -47,7 +47,7 @@ internal fun UserDetailsCard(
                 email = email,
                 phone = phone
             )
-            Address(
+            Location(
                 streetNumber = streetNumber,
                 streetName = streetName,
                 city = city,
@@ -117,7 +117,7 @@ private fun Contacts(
 }
 
 @Composable
-private fun Address(
+private fun Location(
     streetNumber: Int,
     streetName: String,
     city: String,
