@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_dialog_ok">ОК</string>
+    <string name="error_dialog_title">Ошибка!</string>
+    <string name="retry_button_box_retry_button_text">Повторить попытку</string>
+</resources>

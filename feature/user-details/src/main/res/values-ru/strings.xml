@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="user_details_screen_title">Подробности</string>
+    <string name="user_details_card_contacts_block_title">Контакты</string>
+    <string name="user_details_card_location_block_title">Локация</string>
+    <string name="user_details_card_info_block_title">Инфо</string>
+    <string name="user_details_phone">Телефон</string>
+    <string name="user_details_card_address">Адрес</string>
+    <string name="user_details_card_coordinates">Координаты</string>
+    <string name="user_details_card_date_of_birth">Дата рождения</string>
+    <string name="user_details_card_registered">Зарегистрирован</string>
+    <string name="user_details_card_nationality">Национальность</string>
+    <string name="error_content_retry">Попробовать снова</string>
+    <string name="error_content_back">Назад</string>
+    <string name="user_details_card_date_of_birth_pattern">%1$s (%2$d лет)</string>
+    <string name="user_details_card_registered_date_pattern">%1$s (%2$d лет назад)</string>
+</resources>
