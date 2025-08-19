@@ -19,37 +19,25 @@ class UserListViewModel @Inject constructor(
     private val router: UserListRouter
 ) : ViewModel() {
     private val _state: MutableStateFlow<UserListUiState> =
-        MutableStateFlow(UserListUiState.Initial)
+        MutableStateFlow(UserListUiState.Empty)
     val state = _state.asStateFlow()
 
     private val handler = CoroutineExceptionHandler { _, exception ->
-        _state.value = when (val stateValue = _state.value) {
-            is UserListUiState.Content -> stateValue.copy(
-                updating = false,
-                errorMessage = exception.message
-            )
-
-            else -> UserListUiState.Content(
-                users = emptyList(),
-                updating = false,
-                errorMessage = exception.message
-            )
-        }
+        _state.value = UserListUiState.Error(
+            users = _state.value.users ?: emptyList(),
+            errorMessage = exception.message.orEmpty()
+        )
     }
 
     fun loadUsers() {
-        if (_state.value is UserListUiState.Loading || _state.value is UserListUiState.Content) {
+        if (_state.value !is UserListUiState.Empty) {
             return
         }
 
         _state.value = UserListUiState.Loading
         viewModelScope.launch(handler) {
             val users = getUsersUseCase()
-            _state.value = UserListUiState.Content(
-                users = users,
-                updating = false,
-                errorMessage = null
-            )
+            _state.value = UserListUiState.Content(users = users)
         }
     }
 
@@ -59,27 +47,26 @@ class UserListViewModel @Inject constructor(
             return
         }
 
+        _state.value = UserListUiState.Updating(stateValue.users)
         viewModelScope.launch(handler) {
-            _state.value = stateValue.copy(updating = true)
             updateUsersUseCase()
 
             val users = getUsersUseCase()
-            _state.value =
-                UserListUiState.Content(
-                    users = users,
-                    updating = false,
-                    errorMessage = null
-                )
+            _state.value = UserListUiState.Content(users)
         }
     }
 
-    fun clearError() {
+    fun dismissError() {
         val stateValue = _state.value
-        if (stateValue !is UserListUiState.Content) {
+        if (stateValue !is UserListUiState.Error) {
             return
         }
 
-        _state.value = stateValue.copy(errorMessage = null)
+        if (stateValue.users.isEmpty()) {
+            _state.value = UserListUiState.Empty
+        } else {
+            _state.value = UserListUiState.Content(stateValue.users)
+        }
     }
 
     fun openDetails(userId: String) {
@@ -87,12 +74,21 @@ class UserListViewModel @Inject constructor(
     }
 }
 
-sealed interface UserListUiState {
-    object Initial : UserListUiState
-    object Loading : UserListUiState
+sealed class UserListUiState(open val users: List<User>?) {
+    object Empty : UserListUiState(users = null)
+
+    object Loading : UserListUiState(users = null)
+
+    data class Updating(
+        override val users: List<User>
+    ) : UserListUiState(users)
+
     data class Content(
-        val users: List<User>,
-        val updating: Boolean,
-        val errorMessage: String?
-    ) : UserListUiState
+        override val users: List<User>
+    ) : UserListUiState(users)
+
+    data class Error(
+        override val users: List<User>,
+        val errorMessage: String
+    ) : UserListUiState(users)
 }

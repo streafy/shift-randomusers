@@ -38,7 +38,7 @@ fun UserListScreen(
         state = state.value,
         onUserClick = viewModel::openDetails,
         onUpdateUsers = viewModel::updateUsers,
-        onDismissError = viewModel::clearError,
+        onDismissError = viewModel::dismissError,
         onRetry = viewModel::loadUsers
     )
 }
@@ -54,22 +54,49 @@ private fun UserListScreen(
     Scaffold(topBar = {
         AppTopBar(titleText = stringResource(R.string.user_list_screen_title))
     }) { contentPadding ->
+        val contentPaddingModifier = Modifier.padding(contentPadding)
+
         when (state) {
-            is UserListUiState.Content -> UserListContent(
+            is UserListUiState.Empty -> {
+                RetryButtonBox(onRetry)
+            }
+
+            is UserListUiState.Loading -> {
+                FullScreenProgressIndicator(
+                    modifier = contentPaddingModifier
+                )
+            }
+
+            is UserListUiState.Updating -> UserListContent(
                 users = state.users,
-                updating = state.updating,
-                errorMessage = state.errorMessage,
+                updating = true,
                 onUserClick = onUserClick,
                 onUpdateUsers = onUpdateUsers,
-                onErrorDismiss = onDismissError,
-                onRetry = onRetry,
-                modifier = Modifier.padding(contentPadding)
+                modifier = contentPaddingModifier
             )
 
-            UserListUiState.Initial, UserListUiState.Loading ->
-                FullScreenProgressIndicator(
-                    modifier = Modifier.padding(contentPadding)
+            is UserListUiState.Content -> UserListContent(
+                users = state.users,
+                updating = false,
+                onUserClick = onUserClick,
+                onUpdateUsers = onUpdateUsers,
+                modifier = contentPaddingModifier
+            )
+
+            is UserListUiState.Error -> {
+                UserListContent(
+                    users = state.users,
+                    updating = false,
+                    onUserClick = onUserClick,
+                    onUpdateUsers = onUpdateUsers,
+                    modifier = contentPaddingModifier
                 )
+                ErrorDialog(
+                    onDismissRequest = onDismissError,
+                    onConfirm = onDismissError,
+                    errorMessage = state.errorMessage
+                )
+            }
         }
     }
 }
@@ -79,37 +106,23 @@ private fun UserListScreen(
 private fun UserListContent(
     users: List<User>,
     updating: Boolean,
-    errorMessage: String?,
     onUserClick: (String) -> Unit,
     onUpdateUsers: () -> Unit,
-    onErrorDismiss: () -> Unit,
-    onRetry: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    if (users.isEmpty()) {
-        RetryButtonBox(onRetry)
-    } else {
-        PullToRefreshBox(
-            isRefreshing = updating,
-            onRefresh = onUpdateUsers,
-            modifier = modifier.padding(horizontal = 16.dp)
-        ) {
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                items(users) { user ->
-                    UserCard(
-                        user = user,
-                        onClick = { onUserClick(user.id) }
-                    )
-                }
+    PullToRefreshBox(
+        isRefreshing = updating,
+        onRefresh = onUpdateUsers,
+        modifier = modifier.padding(horizontal = 16.dp)
+    ) {
+        LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            items(users) { user ->
+                UserCard(
+                    user = user,
+                    onClick = { onUserClick(user.id) }
+                )
             }
         }
-    }
-    if (errorMessage != null) {
-        ErrorDialog(
-            onDismissRequest = onErrorDismiss,
-            onConfirm = onErrorDismiss,
-            errorMessage = errorMessage
-        )
     }
 }
 
@@ -129,9 +142,7 @@ private fun UserListScreenPreview() {
 
     UserListScreen(
         state = UserListUiState.Content(
-            users = users,
-            updating = false,
-            errorMessage = "test"
+            users = users
         ),
         onUserClick = { },
         onUpdateUsers = { },
