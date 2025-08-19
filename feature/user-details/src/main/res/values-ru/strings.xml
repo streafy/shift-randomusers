@@ -12,8 +12,8 @@
     <string name="user_details_card_nationality">Национальность</string>
     <string name="error_content_retry">Попробовать снова</string>
     <string name="error_content_back">Назад</string>
-    <string name="user_details_card_date_of_birth_pattern">%1$s %2$s</string>
-    <string name="user_details_card_registered_date_pattern">%1$s %2$s</string>
+    <string name="user_details_card_date_of_birth_pattern">%1$s\n%2$s</string>
+    <string name="user_details_card_registered_date_pattern">%1$s\n%2$s</string>
     <plurals name="years">
         <item quantity="one">(%d год)</item>
         <item quantity="few">(%d года)</item>

@@ -15,8 +15,8 @@
     <string name="user_details_card_username_pattern" translatable="false">\@%1$s</string>
     <string name="user_details_card_address_pattern" translatable="false">%1$d %2$s, %3$s, %4$s, %5$s</string>
     <string name="user_details_card_coordinates_pattern" translatable="false">%1$s, %2$s</string>
-    <string name="user_details_card_date_of_birth_pattern">%1$s %2$s</string>
-    <string name="user_details_card_registered_date_pattern">%1$s %2$s</string>
+    <string name="user_details_card_date_of_birth_pattern">%1$s\n%2$s</string>
+    <string name="user_details_card_registered_date_pattern">%1$s\n%2$s</string>
     <string name="error_content_retry">Retry</string>
     <string name="error_content_back">Back</string>
     <string name="empty_string" translatable="false" />
