@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="user_list_screen_title">Users</string>
-    <string name="user_card_name_pattern">%1$s %2$s</string>
+    <string name="user_card_name_pattern" translatable="false">%1$s %2$s</string>
 </resources>
