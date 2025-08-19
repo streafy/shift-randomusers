@@ -180,7 +180,7 @@ private fun UserInfo(
             value = stringResource(
                 R.string.user_details_card_date_of_birth_pattern,
                 formatDateString(dateOfBirthDate),
-                dateOfBirthAge
+                formatPlural(R.plurals.years, dateOfBirthAge)
             )
         )
         UserDetailsItem(
@@ -188,7 +188,7 @@ private fun UserInfo(
             value = stringResource(
                 R.string.user_details_card_registered_date_pattern,
                 formatDateString(registeredDate),
-                registeredAge
+                formatPlural(R.plurals.years_ago, registeredAge)
             )
         )
         UserDetailsItem(
