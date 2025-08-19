@@ -179,7 +179,7 @@ private fun UserInfo(
             name = stringResource(R.string.user_details_card_date_of_birth),
             value = stringResource(
                 R.string.user_details_card_date_of_birth_pattern,
-                dateOfBirthDate,
+                formatDateString(dateOfBirthDate),
                 dateOfBirthAge
             )
         )
@@ -187,7 +187,7 @@ private fun UserInfo(
             name = stringResource(R.string.user_details_card_registered),
             value = stringResource(
                 R.string.user_details_card_registered_date_pattern,
-                registeredDate,
+                formatDateString(registeredDate),
                 registeredAge
             )
         )
