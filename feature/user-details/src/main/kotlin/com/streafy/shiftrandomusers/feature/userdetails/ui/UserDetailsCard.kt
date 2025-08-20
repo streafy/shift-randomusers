@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,7 +37,8 @@ internal fun UserDetailsCard(
     ElevatedCard(
         modifier = modifier
             .padding(horizontal = 16.dp)
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         with(userDetails) {
             Header(
@@ -80,7 +82,7 @@ private fun Header(
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         AsyncImage(
             model = photoUrl,

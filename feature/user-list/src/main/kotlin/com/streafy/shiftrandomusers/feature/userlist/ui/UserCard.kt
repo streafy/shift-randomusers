@@ -43,14 +43,11 @@ fun UserCard(
     ElevatedCard(
         onClick = onClick,
         modifier = Modifier.fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        )
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(24.dp),
-            verticalAlignment = Alignment.CenterVertically,
         ) {
             UserPhoto(user.photoUrl)
             UserInfo(user)
